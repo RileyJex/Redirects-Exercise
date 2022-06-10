@@ -21,7 +21,7 @@ namespace Redirects
         /// Takes a list of routes and redirects in an application and returns a list of paths.
         /// </summary>
         /// <param name="routes">The routes</param>
-        /// <returns></returns>
+        /// <returns>A list of paths</returns>
         public static string[] GetPaths(string[] routes)
         {
             //Temporary return value
