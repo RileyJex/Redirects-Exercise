@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
-namespace Redirects
+namespace Redirects_Exercise
 {
 
     /// <summary>
@@ -9,12 +10,23 @@ namespace Redirects
     /// </summary>
     public class Program 
     {
+        //A singleton PathAnalyzer object to do all the heavy lifting
+        static PathAnalyzer pathAnalyzer = new PathAnalyzer();
+
         /// <summary>
         /// Main driver for the program; runs the test case through GetPaths and prints the paths to the console.
         /// </summary>
         public static void Main()
         {
+            string[] routes = new[]
+            {
+                "/home",
+                "/our-ceo.html -> /about-us.html",
+                "/about-us.html -> /about",
+                "/product-1.html -> /seo"
+            };
 
+            string[] paths = GetPaths(routes);
         }
 
         /// <summary>
@@ -24,8 +36,7 @@ namespace Redirects
         /// <returns>A list of paths</returns>
         public static string[] GetPaths(string[] routes)
         {
-            //Temporary return value
-            return routes;
+            return pathAnalyzer.Process(routes).ToArray();
         }
     }
 }

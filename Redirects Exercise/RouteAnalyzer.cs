@@ -14,8 +14,8 @@ namespace Redirects_Exercise
         /// <summary>
         /// Process a collection of routes
         /// </summary>
-        /// <param name="routes">An iterator for the elements in a collection</param>
-        /// <returns>An iterator to a collection of analyzed routes</returns>
+        /// <param name="routes">An iterable collection for the elements in a collection</param>
+        /// <returns>An iterable collection of analyzed routes</returns>
         public IEnumerable<string> Process(IEnumerable<string> routes);
     }
 }

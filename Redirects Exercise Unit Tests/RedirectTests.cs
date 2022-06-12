@@ -1,6 +1,6 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Redirects;
+using Redirects_Exercise;
 
 namespace Redirects_Exercise_Unit_Tests
 {
