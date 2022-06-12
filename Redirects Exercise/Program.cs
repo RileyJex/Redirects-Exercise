@@ -27,6 +27,9 @@ namespace Redirects_Exercise
             };
 
             string[] paths = GetPaths(routes);
+
+            foreach (string toPrint in paths)
+                Console.WriteLine(toPrint);
         }
 
         /// <summary>

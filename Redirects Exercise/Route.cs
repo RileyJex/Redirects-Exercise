@@ -19,7 +19,7 @@ namespace Redirects_Exercise
         /// </summary>
         /// <param name="RouteName">The name of the new Route</param>
         /// <param name="IsHead">Whether the new Route is a head node or not</param>
-        public Route(string routeName, bool isHead = false)
+        public Route(string routeName, bool isHead = true)
         {
             this.RouteName = routeName;
             this.IsHead = isHead;

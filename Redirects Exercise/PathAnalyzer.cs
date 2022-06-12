@@ -44,7 +44,7 @@ namespace Redirects_Exercise
                     //Get both routes from the graph
                     Route from = routeGraph.Single(r => r.RouteName == path[0]);
                     Route to = routeGraph.Single(r => r.RouteName == path[1]);
-                    
+
                     //Add the redirect to from and mark to as not a head
                     from.Following.Add(to);
                     to.IsHead = false;
@@ -66,7 +66,14 @@ namespace Redirects_Exercise
                 CycleHelper(route, 0, routeGraph.Count);
             }
 
-            return routes;
+            //Get the paths
+            List<string> paths = new List<string>();
+            //Collect all paths by following the head nodes to the end of a path, and join all paths into a graph
+            foreach (Route route in routeGraph.Where(r => r.IsHead)) {
+                paths = paths.Union(PathHelper(route)).ToList();
+            }
+
+            return paths;
         }
 
         /// <summary>
@@ -85,6 +92,33 @@ namespace Redirects_Exercise
             foreach (Route next in currRoute.Following)
             {
                 CycleHelper(next, currDepth + 1, maxDepth);
+            }
+        }
+
+        /// <summary>
+        /// Constructs all possible paths through the routes starting from one route, assuming no cycles.
+        /// </summary>
+        /// <param name="currRoute">The current route we are retrieving the paths for.</param>
+        /// <returns>A collection of paths from that route.</returns>
+        private List<string> PathHelper(Route currRoute)
+        {
+            if (currRoute.Following.Count == 0)
+            {
+                return new List<string> { currRoute.RouteName };
+            }
+            else
+            {
+                List<string> paths = new List<string>();
+                foreach (Route following in currRoute.Following)
+                {
+                    List<string> followingPaths = PathHelper(following);
+                    for (int i = 0; i < followingPaths.Count; i++)
+                    {
+                        followingPaths[i] = currRoute.RouteName + " -> " + followingPaths[i];
+                    }
+                    paths = paths.Union(followingPaths).ToList();
+                }
+                return paths;
             }
         }
     }

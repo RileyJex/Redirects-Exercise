@@ -70,9 +70,10 @@ namespace Redirects_Exercise_Unit_Tests
         [TestMethod]
         public void ForkTest()
         {
+            //Modification: fixed typo as explained in DefaultErrorTest
             string[] toTest = new[]
             {
-                "/home -> about-us.html",
+                "/home -> /about-us.html",
                 "/about-us.html -> /about",
                 "/home -> /product-1.html",
                 "/product-1.html -> /seo"
@@ -119,9 +120,10 @@ namespace Redirects_Exercise_Unit_Tests
         [TestMethod]
         public void JoinTest()
         {
+            //Modification: fixed typo as explained in DefaultErrorTest
             string[] toTest = new[]
             {
-                "/home -> about-us.html",
+                "/home -> /about-us.html",
                 "/about-us.html -> /about",
                 "/our-ceo.html -> /about-us.html"
             };
@@ -143,9 +145,10 @@ namespace Redirects_Exercise_Unit_Tests
         [TestMethod]
         public void JoinErrorTest()
         {
+            //Modification: fixed typo as explained in DefaultErrorTest
             string[] toTest = new[]
             {
-                "/home -> about-us.html",
+                "/home -> /about-us.html",
                 "/about-us.html -> /about",
                 "/our-ceo.html -> /about-us.html",
                 "/about-us.html -> /our-ceo.html"
@@ -165,9 +168,10 @@ namespace Redirects_Exercise_Unit_Tests
         [TestMethod]
         public void JoinForkTest()
         {
+            //Modification: fixed typo as explained in DefaultErrorTest
             string[] toTest = new[]
             {
-                "/home -> about-us.html",
+                "/home -> /about-us.html",
                 "/about-us.html -> /about",
                 "/home -> /product-1.html",
                 "/product-1.html -> /seo",
