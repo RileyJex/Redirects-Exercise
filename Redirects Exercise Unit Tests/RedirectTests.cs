@@ -46,10 +46,12 @@ namespace Redirects_Exercise_Unit_Tests
         public void DefaultErrorTest()
         {
             //Create the initial list
+            //Modification: "/about -> about-us.html" is the original sub-1 element, which causes an issue as about-us.html and /about-us.html are not the same.
+            //I have changed this to fit the rest of the project's style.
             string[] toTest = new[]
             {
                 "/about-us.html -> /about",
-                "/about -> about-us.html"
+                "/about -> /about-us.html"
             };
 
             try
@@ -93,12 +95,14 @@ namespace Redirects_Exercise_Unit_Tests
         [TestMethod]
         public void ForkErrorTest()
         {
+            //Modification: same as DefaultErrorTest, though this test also did not have a cycle in the previous version
             string[] toTest = new[]
-{
-                "/home -> about-us.html",
+            {
+                "/home -> /about-us.html",
                 "/about-us.html -> /about",
                 "/home -> /product-1.html",
-                "/product-1.html -> /seo"
+                "/product-1.html -> /seo",
+                "/seo -> /home"
             };
 
             try

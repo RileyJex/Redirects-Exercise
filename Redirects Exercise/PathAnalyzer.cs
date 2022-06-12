@@ -55,18 +55,37 @@ namespace Redirects_Exercise
                     routeGraph.Add(new Route(route));
                 }
             }
-            //TESTING: print the routes
+
+            /*
+             * Check for cycles in the existing graph; because of how paths are handled, we need to start at each route instead of where paths start to be
+             * thoughrough. We go until we have examined more nodes than exist in the graph, at which point we know there must be a cycle.
+             * O(n^2).
+             * */
             foreach (Route route in routeGraph)
             {
-                Console.WriteLine(route.RouteName);
-                foreach (Route child in route.Following)
-                {
-                    Console.WriteLine($"{route.RouteName} -> {child.RouteName}");
-                }
+                CycleHelper(route, 0, routeGraph.Count);
             }
 
-
             return routes;
+        }
+
+        /// <summary>
+        /// A function to detect a cycle in the graph of paths. This is done by recursing until the path has ended or a maximum depth has been reached.
+        /// </summary>
+        /// <param name="currRoute">The current route we are evaluating.</param>
+        /// <param name="currDepth">The current depth we have explored the graph to.</param>
+        /// <param name="maxDepth">The maximum possible depth.</param>
+        /// <exception cref="ArgumentException">Thrown if there is a cycle.</exception>
+        private void CycleHelper(Route currRoute, int currDepth, int maxDepth)
+        {
+            if (currDepth >= maxDepth)
+            {
+                throw new ArgumentException("Error: Cycle detected in graph.");
+            }
+            foreach (Route next in currRoute.Following)
+            {
+                CycleHelper(next, currDepth + 1, maxDepth);
+            }
         }
     }
 }
