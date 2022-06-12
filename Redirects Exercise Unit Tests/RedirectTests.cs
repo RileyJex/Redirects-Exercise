@@ -189,5 +189,37 @@ namespace Redirects_Exercise_Unit_Tests
 
             CollectionAssert.AreEquivalent(resultTest, actualResult);
         }
+
+        /// <summary>
+        /// Tests a complex redirect hierarchy
+        /// </summary>
+        [TestMethod]
+        public void ComplexTest()
+        {
+            string[] toTest = new[]
+            {
+                "/about-2 -> /about-3",
+                "/about-1",
+                "/our-ceo.html",
+                "/home -> /about-1",
+                "/about-1 -> /about-2",
+                "/home",
+                "/our-ceo.html -> /about-us.html",
+                "/home -> /product-1.html",
+                "/product-1.html -> /seo",
+                "/about-us.html -> /about-1"
+            };
+
+            string[] resultTest = new[]
+            {
+                "/home -> /product-1.html -> /seo",
+                "/our-ceo.html -> /about-us.html -> /about-1 -> /about-2 -> /about-3",
+                "/home -> /about-1 -> /about-2 -> /about-3"
+            };
+
+            string[] actualResult = Program.GetPaths(toTest);
+
+            CollectionAssert.AreEquivalent(resultTest, actualResult);
+        }
     }
 }
